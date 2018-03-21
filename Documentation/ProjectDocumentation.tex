@@ -1,0 +1,75 @@
+\documentclass[a4paper,10pt]{report}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+\newcommand{\code}{\texttt}
+
+% Title Page
+\title{
+Benchmarking application for Android
+}
+\author{Peter-Tibor Zavaczki, 30433}
+\date{march 14, 2018}
+
+\begin{document}
+\maketitle
+
+\chapter{Introduction}
+\section{About}
+ \subsection{Benchmarking}
+ The procedure of benchmarking describes running some set of programs on a system to evaluate the performance of said system. When the term refers to assessing hardware, the most commonly tested element is the CPU, the GPU, RAM and storage drive tests being the less common, yet still seen parts of benchmarks. Testing the CPU relies on, among others, running some very resource consuming algorithms in a closed environment and measuring their execution time, then based on an arbitarily set standard, grading the device.
+ \subsection{Android}
+ Android is a monolithic operating system based on a modified version of the Linux kernel, its core being written mainly in C and C++, while its UI is written in Java.
+
+ There are some less known programming languages, such as Kotlin and Go, which are used to develop Android applications, bust most of them are developed in Java, which will be the case for this project aswell. The most essential part of developing an Android application is the Android SDK, which is also written in Java. The current official IDE to develop Android applications in is Android Studio, developed by Google and powered by IntelliJ, although since the code is Java, other Java based IDEs can be used aswell, such as Eclipse, IntelliJ or NetBeans. Compiled code is packaged in .apk type executables, which are stored in \code{/data/app} but it is only accessible to the root user for security reasons.
+
+\newpage
+\section{Specifications}
+ \begin{itemize}
+ \item The purpose of this project is to develop an application for Android, which shows concrete data about the device's capability to perform a certain task.
+ \item The user's interaction with the application should be fairly restrained, he being able to start the benchmarking process and observing the final results after its completion.
+ \item The application is designed to run on devices running Android OS, and being run in strictly in a local environment.
+ \item The language used for coding is Java
+ \item The application should run its test in as much of a closed environment as possible. % This means that, in the ideal case, the application should have exclusive and full access to the tested resource, such as being the only process running on a core of the CPU until the running algorithm finishes. Of course the previously stated example is very extreme, since the OS will always have higher priority than any user application and as such our users application's process will most likely be constantly interrupted by the OS for it to perform its own actions.
+ \end{itemize}
+
+\section{Topic inquiry}
+ For the development of this project I have to look into the targeted topic and familiarize myself with, developing software for Android and coming up with stable and reliable benchmarks.
+
+ The articles read were:
+ \begin{enumerate}
+ \item \href{https://www.androidauthority.com/write-an-android-cpu-benchmark-part-1-679929/}{''Create a CPU benchmark tool''}, by Adam Sinicki
+ \item \href{https://www.androidauthority.com/write-an-android-cpu-benchmark-tool-part-2-681455/}{''How to write an Android benchmark''}, by Adam Sinicki
+ \end{enumerate}
+
+ \subsubsection{''Create a CPU benchmark tool'', by Adam Sinicki}
+ This article introduces the basics of benchmarking by explaining the concept that we need to run heavy algorithms to stress the CPU, and that the execution time may differ because of the ongoing processes in the background. Then it goes on explaining the basics behind SHA-1 (Secure Hash Algorithm 1), formerly used to hash sensitive data. I say formerly, since newer computers as powerful enough so that brute force attack are an option to cracking the hash resulted from SHA-1; nowadays SHA-2, SHA-3 or other hashing algorithms are used for better security.
+
+ The next topic is building the actual Android app. The UI's design is shown by the .xml file and the emulated result shown in the virtual Android device in Android Studio.
+
+ After the author finished with creating the basic UI design, he goes on to develop the mechanics of the application, creating the functions to be called that measure the time it takes for the CPU to perform a certain action.
+ 
+ Being finished with the basic hash function calling function, the author adds an event to a button, which when pressed executes the previously written hash function.
+ 
+ Seeing as the code executes very fast, a simple for loop is added to repeat the hashing function 20000 times, thus drastically slowing down the complete execution process. 
+ 
+ As a final touch the author decides to divide the result given in the nanoseconds taken to execute the hashing by 100000000 to get a grade in a reasonable scale.
+
+ \subsubsection{''How to write an Android benchmark'', by Adam Sinicki}
+ This article focuses on introducing more complex concepts to building a benchmark, such as the MD5 encryption protocol, multi threading the application, runnables and handlers.
+ 
+ Firstly, a function for calculating the MD5 hash is created, the time for calling it 20000 times is measured, added to the time required to calculate 20000 SHA-1 hashes and an average is made for getting the grade for the device.
+ 
+ After using the MD5 protocol to hash a string 20000 times, the author writes a simple for cycle to count to a $ 10^n $ . This part of his code represents the time it takes for the device to brute force crack an n-digit password. 
+ 
+ The following step in the process of building the benchmark is multi threading the application. More specifically, the author creates a Runnable for the previously written 'brute force cracker' and runs it in a new thread. He relates that, unfortunately threads have no way of communicating between each other in of themselves and as such the time cannot be measured, nor can we know if the function finished or not. For this he uses a Handler, which sends a message containing the time it took to run the function in the Runnable.
+ 
+ As a final note, the author adds that he moved every function to a separate thread and calculated the execution time for each of them separately, thus making it so the application and device didn't freeze while it ran its tests and getting a final grade for his device.
+
+
+\end{document}
