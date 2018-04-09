@@ -19,6 +19,11 @@ Benchmarking application for Android
 \begin{document}
 \maketitle
 
+
+\begin{abstract}
+ This paper relates the development a project revolving around creating a basic benchmarking application for Android based systems.
+\end{abstract}
+
 \chapter{Introduction}
 \section{About}
  \subsection{Benchmarking}
@@ -70,6 +75,21 @@ Benchmarking application for Android
  The following step in the process of building the benchmark is multi threading the application. More specifically, the author creates a Runnable for the previously written 'brute force cracker' and runs it in a new thread. He relates that, unfortunately threads have no way of communicating between each other in of themselves and as such the time cannot be measured, nor can we know if the function finished or not. For this he uses a Handler, which sends a message containing the time it took to run the function in the Runnable.
  
  As a final note, the author adds that he moved every function to a separate thread and calculated the execution time for each of them separately, thus making it so the application and device didn't freeze while it ran its tests and getting a final grade for his device.
+
+\chapter{Design}
+\section{Creation}
+ This project is created for Android OS running devices, thus Android Studio is used as the principal IDE. On the other side, Java is used for programming the back-end of the application and xml/css for the UI/front-end.
+ 
+ \subsection{Modules}
+ The application will, of course be modularized based on two main categories, the front-end and the back-end, and then, based on the back-end point of view on several other modules based on the type of hardware resouce that is tested, such as CPU, GPU, storage etc.
+ 
+ \subsection{Testing}
+ Since the application is modularized, automatic test can be implemented, such as JUnit tests, thank to the usage of Java. These tests can hold the whole project together and signal if there is an error in a module, in case we change something in a related module.
+ 
+ \subsection{Benchmarking}
+ The benchmark tests need to be specific for each hardware element we wish to test. For the CPU, heavy arythmetic operations will be performed several times, and an average execution time will be measured. For the GPU, a 3D graphically complex scene will be played and rendered, while the FPS (frames per second) is measured and averaged. For the storage unit, a large dummy file can be copied from one place to the other, thus measuring its mean speed.
+ 
+ For the final calculations, and summation of all the data, we could take the sum of the milliseconds used to calculate everything, while creating an equation for calculating and approximate value for this point system for the GPU test aswell, with the average FPS count.
 
 
 \end{document}
