@@ -1,5 +1,8 @@
 \documentclass[a4paper,10pt]{report}
 \usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\graphicspath{ {Diagrams/} }
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -77,19 +80,78 @@ Benchmarking application for Android
  As a final note, the author adds that he moved every function to a separate thread and calculated the execution time for each of them separately, thus making it so the application and device didn't freeze while it ran its tests and getting a final grade for his device.
 
 \chapter{Design}
-\section{Creation}
+
+\section{Construction}
  This project is created for Android OS running devices, thus Android Studio is used as the principal IDE. On the other side, Java is used for programming the back-end of the application and xml/css for the UI/front-end.
  
- \subsection{Modules}
- The application will, of course be modularized based on two main categories, the front-end and the back-end, and then, based on the back-end point of view on several other modules based on the type of hardware resouce that is tested, such as CPU, GPU, storage etc.
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{DeploymentDiagram1.png}
+  \caption{The deployment diagram of the project}
+  \label{fig:deplDiag1}
+ \end{figure}
  
- \subsection{Testing}
+ \section{Modules}
+ 
+ \begin{wrapfigure}[13]{r}{0.25\textwidth}
+  \centering
+  \caption{}
+  \includegraphics[width=0.5\textwidth]{ComponentDiagram1.png}
+  \label{fig:compDiag1}
+ \end{wrapfigure}
+ 
+ The application will, of course be modularized based on two main categories, the front-end and the back-end, and then, based on the back-end point of view on several other modules based on the type of hardware resouce that is tested, such as CPU, GPU, storage etc. This can be seen on figure \ref{fig:compDiag1}, representing the component diagram of the project.
+ 
+ \section{Testing}
  Since the application is modularized, automatic test can be implemented, such as JUnit tests, thank to the usage of Java. These tests can hold the whole project together and signal if there is an error in a module, in case we change something in a related module.
  
- \subsection{Benchmarking}
+ \pagebreak
+ \section{Benchmarking}
  The benchmark tests need to be specific for each hardware element we wish to test. For the CPU, heavy arythmetic operations will be performed several times, and an average execution time will be measured. For the GPU, a 3D graphically complex scene will be played and rendered, while the FPS (frames per second) is measured and averaged. For the storage unit, a large dummy file can be copied from one place to the other, thus measuring its mean speed.
  
  For the final calculations, and summation of all the data, we could take the sum of the milliseconds used to calculate everything, while creating an equation for calculating and approximate value for this point system for the GPU test aswell, with the average FPS count.
-
+ 
+ \section{Use-cases}
+  The user client can interact with the app in the following ways: he wishes to benchmark the device to see how it performs, or he wishes to see information about the device's hardware build. This use-case can be seen in figure \ref{fig:useCaseDiag1}.
+  
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{UseCaseDiagram1.png}
+  \caption{The use-case diagram for both possible actions of the actor}
+  \label{fig:useCaseDiag1}
+ \end{figure}
+ 
+ \subsection{Use-case: Benchmarking the device}
+ This use-case is active if the client user chooses to benchmark his device. He can choose this option by tapping the corresponding button. Following the button's tap, the application starts several processes, regarding the different component's benchmarking tasks, such as hashing a String with SHA-1 for the CPU. As a process completes, a message is displayed in the logging area notifying the user and displaying the score. This sequence of actions can be observed on figure \ref{fig:benchSeqDiag1}.
+ 
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{SequenceDiagram_Benchmark.png}
+  \caption{The sequence diagram representing the benchmarking process}
+  \label{fig:benchSeqDiag1}
+ \end{figure}
+ 
+ \pagebreak
+ \subsection{Use-case: Querying the device's hardware build}
+ This use-case is active if the client user chooses to view his device's hardware build. He can do this by tapping the corresponding button. Following the button's tap, the application starts a process during which it queries, then displays the reuested information. This sequence of actions can be observed on figure \ref{fig:querySeqDiag1}.
+ 
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{SequenceDiagram_DeviceBuild.png}
+  \caption{The sequence diagram representing the querying of the device's hardware}
+  \label{fig:querySeqDiag1}
+ \end{figure}
+ 
+ \pagebreak
+ \section{Packages}
+ The application consists of only two packages: the BechmarkTools package, containing the different classes to run the benchmarking process' stages, and the com.example.peter.myapplication package, which is basically the package containing the UI layer of the application. This package diagram can be seen on figure \ref{fig:packageDiag1}.
+ 
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{PackageDiagram1.png}
+  \caption{The package diagram of the project}
+  \label{fig:packageDiag1}
+  
+ \end{figure}
 
 \end{document}
