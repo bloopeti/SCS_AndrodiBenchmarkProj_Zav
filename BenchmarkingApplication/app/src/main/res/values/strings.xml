@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Benchmark app</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="button_start_benchmark">Start Benchmarking</string>
+    <string name="label_result">Result</string>
+    <string name="label_log">Log</string>
+    <string name="label_mark">Mark</string>
+    <string name="string_to_hash">Swiggity swooty im coming for that passing mark!</string>
+    <string name="button_device_build">Device hardware build</string>
+</resources>
