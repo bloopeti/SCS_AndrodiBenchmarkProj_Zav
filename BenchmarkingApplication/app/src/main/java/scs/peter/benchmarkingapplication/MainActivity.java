@@ -3,44 +3,47 @@ package scs.peter.benchmarkingapplication;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import scs.peter.benchmarkingapplication.benchmarkTools.CPUBenchmark;
-import scs.peter.benchmarkingapplication.mFragments.BuildDataFragment;
+import scs.peter.benchmarkingapplication.benchmarkTools.DeviceInfo;
 
 public class MainActivity extends AppCompatActivity {
 
-   // private TextView mTextMessage;
+    private TextView mLogger; // = (TextView) findViewById(R.id.logger);
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            mLogger = (TextView) findViewById(R.id.logger);
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                   // mTextMessage.setText(R.string.title_benchmark);
-                    BuildDataFragment buildDataFragment = new BuildDataFragment();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-                    // Replace whatever is in the fragment_container view with this fragment,
-                    // and add the transaction to the back stack
-                    transaction.replace(R.id.list, buildDataFragment);
-                    transaction.addToBackStack(null);
-
-                    // Commit the transaction
-                    transaction.commit();
+                case R.id.navigation_benchmark:
 
                     CPUBenchmark cpuB = new CPUBenchmark(getString(R.string.string_to_hash));
-                    cpuB.hashTestString();
+                    String s1 = "SHA1 hash time (ns) = " + Long.toString(cpuB.hashTestString());
+                    mLogger.setText(s1);
 
                     return true;
-                case R.id.navigation_dashboard:
-                   // mTextMessage.setText(R.string.button_device_build);
-
+                case R.id.navigation_device_build:
+                    //mLogger.setText(R.string.button_device_build);
+                    DeviceInfo deviceInfo = new DeviceInfo();
+                    String s2 = deviceInfo.getManufacturer() +
+                            deviceInfo.getModel() +
+                            deviceInfo.getBrand() +
+                            deviceInfo.getBoard() +
+                            deviceInfo.getDisplay() +
+                            deviceInfo.getDevice() +
+                            deviceInfo.getFingerprint() +
+                            deviceInfo.getHardware() +
+                            "Cores: " + deviceInfo.getNumCores()
+                            ;
+                    mLogger.setText(s2); //"Yes.\n");
                     return true;
             }
             return false;
@@ -50,9 +53,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_device_info);
+        setContentView(R.layout.activity_main);
 
-        //mTextMessage = (TextView) findViewById(R.id.message);
+        mLogger = (TextView) findViewById(R.id.logger);
+        mLogger.setMovementMethod(new ScrollingMovementMethod());
+        mLogger.setFocusable(false);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary)); //doesnt work from xml \; why?
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
