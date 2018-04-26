@@ -1,4 +1,4 @@
-package scs.peter.benchmarkingapplication.BenchmarkTools;
+package scs.peter.benchmarkingapplication.benchmarkTools;
 
 import android.annotation.SuppressLint;
 import android.os.Handler;

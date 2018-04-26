@@ -8,5 +8,8 @@
     <string name="label_log">Log</string>
     <string name="label_mark">Mark</string>
     <string name="string_to_hash">Swiggity swooty im coming for that passing mark!</string>
-    <string name="button_device_build">Device hardware build</string>
+    <string name="button_device_build">Device build</string>
+    <string name="title_activity_device_info">DeviceInfoActivity</string>
+    <string name="title_benchmark">Benchmark</string>
+    <string name="title_device_build">Device Build</string>
 </resources>
