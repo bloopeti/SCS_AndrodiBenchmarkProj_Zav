@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 import static android.content.ContentValues.TAG;
 
-public class DeviceInfo implements DeviceInfoInterface
+public class DeviceInfo
 {
     public String getManufacturer()
     {
@@ -80,11 +80,12 @@ public class DeviceInfo implements DeviceInfoInterface
             return 1;
         }
     }
+    /*
     public static int[] getCPUFrequencyCurrent() throws Exception {
         int[] output = new int[getNumCores()];
         for(int i=0;i<getNumCores();i++) {
             output[i] = readSystemFileAsInt("/sys/devices/system/cpu/cpu"+String.valueOf(i)+"/cpufreq/scaling_cur_freq");
         }
         return output;
-    }
+    }*/
 }
