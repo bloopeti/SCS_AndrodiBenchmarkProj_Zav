@@ -152,6 +152,58 @@ Benchmarking application for Android
 
 \chapter{Implementation}
  \section{The environment}
- This proposed project deals with making a basic CPU benchmark and querying the device's build
+ This proposed project deals with making a basic CPU benchmarking tool and querying some basic information about the mobile device's build.\\
+ The tools and technologies used for achieving this task are programming in Android, which relies on Java, with the Android Studio dedicated IDE, developed with Google, powered by JetBrains' IntelliJ.\\
+ 
+ \section{Architecture}
+ The built project, due to it being written mainly in Android, is based on an MVC architectural model.\\
+ The models are defined in the benchmarkTools package, the view being the UI, defined using the layout xml files and the controllers are the .java files which contain the word Activity in their name.\\
+ The model is composed of two files: CPUBenchmark.java and DeviceInfo.java.\\
+ CPUBenchmark.java contains the functions which test the CPU's power, by measuring the time it takes to measure hashing a string with SHA-1 algorithm, measuring the FLOPS (Floating Point Operations Per Second) and the MIPS (Millions of Instruction Per Second).\\
+ DeviceInfo.java contains the functions which query the basic device build and another function which tells the number of cores on the CPU.\\
+ The controller is just one class MainActivity.java, which contains the main function used for the Android lifecycle and the listener for the botton navigation bar, within which the adequate functions are called to display data on screen.\\
+ The view, defined in the layout folder within resources, contains an xml definition of a hierarchically built view.\\
+ 
+ \section{Tests}
+ \subsection{SHA-1 processing}
+ SHA-1 stands for Secure Hash Algorithm, it is a cryptographic hash function which takes an input and produces a 160-bit (20-byte) hash value known as a message digest - typically rendered as a hexadecimal number, 40 digits long.\\
+ In this project we calculate the SHA-1 value of a string from the res/values/strings.xml, called string\_to\_hash.\\
+ This is done by including the MessageDigest class from java's security package, creating an instance of it by specifying the task it will be used for is hashing things with SHA-1.\\
+ By calling the digest() function we get the result of digesting the input string in a byte array.\\
+ The previously received byte array is then processed by transforming each byte into a string value and appending it to the output string.\\
+ This process trasforms the input string "Swiggity swooty im coming for that passing mark!" into the output string "ed446da10ca83eee3dd9122cc474e01cc4b9a25e".\\
+ Then, the time taken to process this operation is measured and displayed in the UI.
+ 
+ \subsection{FLOPS count}
+ FLOPS stands for Floating Point Operations Per Second and it is a measure of computer performance, useful in fields of scientific computations that require floating-point calculations..\\
+ For the FLOPS test I run several operations on double type variable and count the time for each of them sepparately, at the end returning the sum of the time taken to do all the operations.\\
+ The time is counted in nanoseconds for a higher precision.\\
+ The operations performed are multiplication, additon, negation, division, subtraction, conversion to long (non floating point type represented on 64 bits) and conversion of the long variable back to double.\\
+ These 7 total operations' processing times, being in nanoseconds are summed up and returned out of the function, being then processed in the calling function which calculated the FLOPS from the previously returned data.\\
+ The FLOPS of the CPU is calculated as follows: the previous result is divided 1000000000, since it was in nanoseconds and we want to show in how many seconds has the 7 operations been done.\\
+ Then we divide 7 by that value so we get X floating point operations are done in 1 second, this being the definition of FLOPS.\\
+ 
+ \subsection{MIPS count}
+ IPS stands for Onstructions Per Second and is a measure of a computer's processor performance.\\
+ Since modern processors are quite powerful, counting IPS returns a high number, so it is a common approach to count thousands (TIPS/KIPS), millions (MIPS) of billions of IPS (GIPS).\\
+ In our tests, we use MIPS.\\
+ The MIPS test is done similarly to how the FLOPS test is done. \\
+ Seven operations are performed on an integer type variable (add, sub, mul, div, neg, convert to float, convert float to int) with counting the time it takes for each of these operations to be completed and then at the end the sum of these times are returned.\\
+ The time is counted in nanoseconds for a higher precision.\\
+ This returned value is processed in a different function, where from the nanoseconds it took to perform these 7 ops we get a MIPS value.\\
+ This is done by dividing the returned time with 1000000000 to get the value in seconds, then we divide 7 with the resulting value, getting the IPS of the processor, the divide it all with 1000000 to get the final MIPS value, which is then returned to be displayed on the UI.\\
+ 
+ \section{Querying the device's build}
+ The querying of the device's build is maily done by using the Build class of the os package from adroid's packages.\\
+ There are some values in this class which can be accessed statically, thus calling \textit{Build.MANUFACTURER} will give us the manufacturer, which is noted in the device's datasheet, accessed by the Build class.\\
+ The values outputted are the manufacturer, the model, the brand, the board, the display, the device, the fingerprint and the hardware informations.\\
+ The final value outputted is the number of cores on the CPU.\\
+ This value is calculated by having a function, called getNumCores, which has an inner class CpuFilter defined, which looks for files in the /sys/devices/system/cpu/ of the format "cpu[0-9]+".\\
+ The number of such files found will be the number of cores on the CPU.\\
+ 
+\chapter{Summing up}
+ \section{Results}
+ The main result of this project was the 
+ 
 
 \end{document}

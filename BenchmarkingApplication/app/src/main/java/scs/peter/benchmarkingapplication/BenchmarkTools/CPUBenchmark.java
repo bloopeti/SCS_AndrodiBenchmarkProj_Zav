@@ -113,7 +113,7 @@ public class CPUBenchmark {
         totalTime += stopTime - startTime;
 
         startTime = System.nanoTime();
-        d = d + 3.1; //add
+        d = d - 3.1; //subst
         stopTime = System.nanoTime();
         totalTime += stopTime - startTime;
 
@@ -166,7 +166,7 @@ public class CPUBenchmark {
         totalTime += stopTime - startTime;
 
         startTime = System.nanoTime();
-        i = i + 3; //add
+        i = i - 3; //subst
         stopTime = System.nanoTime();
         totalTime += stopTime - startTime;
 
