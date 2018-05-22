@@ -188,7 +188,8 @@ public class CPUBenchmark {
         long sevenOpsNano = intOpTest();
         double result = ((double) sevenOpsNano) / 1000000000;
         result = 7 / result;
-        return result; //intops
+        result = result / 1000000;
+        return result; //MIL intops / sec
     }
 
     public String getOutput() {

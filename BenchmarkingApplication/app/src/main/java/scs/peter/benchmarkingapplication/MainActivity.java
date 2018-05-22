@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                     CPUBenchmark cpuB = new CPUBenchmark(getString(R.string.string_to_hash));
                     String s1 = "SHA1 hash time (ns) = " + Long.toString(cpuB.hashTestString());
                     s1 = s1 + "\nFloating point test (FLOPs) = " + cpuB.flops();
-                    s1 = s1 + "\nInteger test (int ops / s)= " + cpuB.intops();
+                    s1 = s1 + "\nInteger test (MIPS) = " + cpuB.intops();
                     mLogger.setText(s1);
 
                     return true;
