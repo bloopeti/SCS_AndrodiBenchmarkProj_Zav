@@ -169,6 +169,16 @@ Benchmarking application for Android
  When the Benchmark option is selected, the tests which are implemented are being run and the results are displayed.\\
  When the Device Build option is selected, the device's basic build is displayed.\\
  
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{Screenshot_20180523-214203.png}
+  \quad
+  \includegraphics[width=0.4\textwidth]{Screenshot_20180523-214209.png}
+  \caption{The UI while Benchmark or Device Build is selected}
+  \label{fig:uiBench}
+  
+ \end{figure}
+ 
  \section{Tests}
  \subsection{SHA-1 processing}
  SHA-1 stands for Secure Hash Algorithm, it is a cryptographic hash function which takes an input and produces a 160-bit (20-byte) hash value known as a message digest - typically rendered as a hexadecimal number, 40 digits long.\\
@@ -178,23 +188,6 @@ Benchmarking application for Android
  The previously received byte array is then processed by transforming each byte into a string value and appending it to the output string.\\
  This process trasforms the input string "Swiggity swooty im coming for that passing mark!" into the output string "ed446da10ca83eee3dd9122cc474e01cc4b9a25e".\\
  Then, the time taken to process this operation is measured and displayed in the UI.
- 
- 
- \begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{Screenshot_20180523-214203.png}
-  \caption{The UI while Benchmark is selected}
-  \label{fig:uiBench}
-  
- \end{figure}
- 
- \begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{Screenshot_20180523-214209.png}
-  \caption{The UI while Device Build is selected}
-  \label{fig:uiBuild}
-  
- \end{figure}
  
  \subsection{FLOPS count}
  FLOPS stands for Floating Point Operations Per Second and it is a measure of computer performance, useful in fields of scientific computations that require floating-point calculations..\\
