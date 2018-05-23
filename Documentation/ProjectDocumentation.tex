@@ -164,6 +164,11 @@ Benchmarking application for Android
  The controller is just one class MainActivity.java, which contains the main function used for the Android lifecycle and the listener for the botton navigation bar, within which the adequate functions are called to display data on screen.\\
  The view, defined in the layout folder within resources, contains an xml definition of a hierarchically built view.\\
  
+ \section{User Interface}
+ The user interface is minimalistic, with a bottom navigation bar to select the desired functionality (Benchmark or Device Build) and a text field to display the results for the selected functionality.\\
+ When the Benchmark option is selected, the tests which are implemented are being run and the results are displayed.\\
+ When the Device Build option is selected, the device's basic build is displayed.\\
+ 
  \section{Tests}
  \subsection{SHA-1 processing}
  SHA-1 stands for Secure Hash Algorithm, it is a cryptographic hash function which takes an input and produces a 160-bit (20-byte) hash value known as a message digest - typically rendered as a hexadecimal number, 40 digits long.\\
@@ -173,6 +178,23 @@ Benchmarking application for Android
  The previously received byte array is then processed by transforming each byte into a string value and appending it to the output string.\\
  This process trasforms the input string "Swiggity swooty im coming for that passing mark!" into the output string "ed446da10ca83eee3dd9122cc474e01cc4b9a25e".\\
  Then, the time taken to process this operation is measured and displayed in the UI.
+ 
+ 
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{Screenshot_20180523-214203.png}
+  \caption{The UI while Benchmark is selected}
+  \label{fig:uiBench}
+  
+ \end{figure}
+ 
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{Screenshot_20180523-214209.png}
+  \caption{The UI while Device Build is selected}
+  \label{fig:uiBuild}
+  
+ \end{figure}
  
  \subsection{FLOPS count}
  FLOPS stands for Floating Point Operations Per Second and it is a measure of computer performance, useful in fields of scientific computations that require floating-point calculations..\\
